@@ -1,8 +1,9 @@
 import { Link, Route, Routes } from 'react-router-dom'
 
-//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const PagePathsWithComponents = import.meta.glob('./pages/*.tsx', { eager: true })
-//Example Output: 
+// Example Output: 
 // const modules = {
 //   './pages/About.tsx': () => import('./pages/About.js'),
 //   './pages/Home.tsx': () => import('./pages/Home.tsx')
@@ -23,19 +24,15 @@ export function App() {
     <>
       <nav>
         <ul>
-          {routes.map(({ name, path }) => {
-            return (
+          {routes.map(({ name, path }) => (
               <li key={path}>
                 <Link to={path}>{name}</Link>
               </li>
-            )
-          })}
+            ))}
         </ul>
       </nav>
       <Routes>
-        {routes.map(({ path, component: RouteComp }) => {
-          return <Route key={path} path={path} element={<RouteComp />}/>
-        })}
+        {routes.map(({ path, component: RouteComp }) => <Route key={path} path={path} element={<RouteComp />} />)}
       </Routes>
     </>
   )
